@@ -17,4 +17,17 @@ pnpm dev
 bun dev
 ```
 
+Rename `.env.example` to `.env` and fill in your environment variables:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Open the `.env` file and replace the following with your own keys:
+
+   ```bash
+   NEON_DATABASE_URL=
+   NEXT_PUBLIC_APP_URL=
+   ```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
