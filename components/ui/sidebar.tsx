@@ -26,27 +26,27 @@ import {
 export const navItems = [
   {
     label: "Dashboard",
-    href: "/",
+    href: "/admin/",
     icon: <Home className="h-4 w-4" />,
   },
   {
     label: "Orders",
-    href: "/orders",
+    href: "/admin/orders",
     icon: <ShoppingCart className="h-4 w-4" />,
   },
   {
     label: "Products",
-    href: "/products",
+    href: "/admin/products",
     icon: <Package className="h-4 w-4" />,
   },
   {
     label: "Users",
-    href: "/users",
+    href: "/admin/users",
     icon: <Users className="h-4 w-4" />,
   },
   {
     label: "Analytics",
-    href: "/analytics",
+    href: "/admin/analytics",
     icon: <LineChart className="h-4 w-4" />,
   },
 ];
