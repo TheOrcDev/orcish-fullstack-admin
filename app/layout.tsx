@@ -5,8 +5,6 @@ import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import { TRPCProvider } from "@/components/ui/trpc-provider";
-import Sidebar from "@/components/ui/sidebar";
-import Header from "@/components/ui/header";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const fontSans = FontSans({

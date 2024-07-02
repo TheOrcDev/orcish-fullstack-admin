@@ -14,7 +14,6 @@ import {
   Users,
 } from "lucide-react";
 import { Button } from "./button";
-import { Badge } from "./badge";
 import {
   Card,
   CardContent,
