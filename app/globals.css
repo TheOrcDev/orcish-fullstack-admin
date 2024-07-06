@@ -50,6 +50,24 @@
 }
 
 @layer base {
+  :root {
+    --chart-1: 30 100% 50%; /* Bright orange */
+    --chart-2: 33 80% 60%; /* Soft orange */
+    --chart-3: 27 90% 55%; /* Slightly darker orange */
+    --chart-4: 36 70% 65%; /* Light orange */
+    --chart-5: 24 100% 50%; /* Rich orange */
+  }
+
+  .dark {
+    --chart-1: 30 100% 50%; /* Bright orange */
+    --chart-2: 33 80% 60%; /* Soft orange */
+    --chart-3: 27 90% 55%; /* Slightly darker orange */
+    --chart-4: 36 70% 65%; /* Light orange */
+    --chart-5: 24 100% 50%; /* Rich orange */
+  }
+}
+
+@layer base {
   * {
     @apply border-border;
   }
