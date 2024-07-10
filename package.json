@@ -11,13 +11,13 @@
     "commit": "./node_modules/cz-customizable/standalone.js"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.6.0",
+    "@hookform/resolvers": "^3.9.0",
     "@neondatabase/serverless": "^0.9.4",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
-    "@tanstack/react-query": "^5.48.0",
+    "@tanstack/react-query": "^5.50.1",
     "@trpc/client": "11.0.0-rc.421",
     "@trpc/next": "11.0.0-rc.421",
     "@trpc/react-query": "11.0.0-rc.421",
@@ -26,15 +26,15 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.31.2",
-    "lucide-react": "^0.397.0",
+    "drizzle-orm": "^0.32.0",
+    "lucide-react": "^0.407.0",
     "next": "14.2.4",
     "next-themes": "^0.3.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-hook-form": "^7.52.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.52.1",
     "recharts": "^2.12.7",
-    "tailwind-merge": "^2.3.0",
+    "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
   },
@@ -44,16 +44,16 @@
     }
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "cz-customizable": "^7.0.0",
-    "drizzle-kit": "^0.22.7",
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "cz-customizable": "^7.1.0",
+    "drizzle-kit": "^0.23.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "husky": "^9.0.11",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3"
   }
 }
