@@ -25,7 +25,7 @@ import {
 export const navItems = [
   {
     label: "Dashboard",
-    href: "/admin/",
+    href: "/admin",
     icon: <Home className="h-4 w-4" />,
   },
   {

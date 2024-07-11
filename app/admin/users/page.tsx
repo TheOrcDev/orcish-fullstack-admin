@@ -15,7 +15,7 @@ export default function Users() {
   const users = trpc.users.get.useQuery();
 
   return (
-    <Card>
+    <Card className="m-10">
       <CardHeader className="px-7">
         <CardTitle>Users</CardTitle>
       </CardHeader>
@@ -23,23 +23,39 @@ export default function Users() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>ID</TableHead>
-              <TableHead className="hidden sm:table-cell">Email</TableHead>
+              <TableHead className="hidden sm:table-cell">ID</TableHead>
+              <TableHead>Email</TableHead>
               <TableHead className="hidden sm:table-cell">Username</TableHead>
               <TableHead className="hidden md:table-cell">Date</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
+            {users.isPending &&
+              Array.from({ length: 5 }).map((_, index) => (
+                <TableRow key={index}>
+                  <TableCell width={"40%"}>
+                    <div className="text-sm text-muted-foreground">
+                      <div className="w-full p-5 rounded-xl bg-gray-400/30"></div>
+                    </div>
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">
+                    <div className="w-full p-5 rounded-xl bg-gray-400/30"></div>
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">
+                    <div className="w-full p-5 rounded-xl bg-gray-400/30"></div>
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    <div className="w-full p-5 rounded-xl bg-gray-400/30"></div>
+                  </TableCell>
+                </TableRow>
+              ))}
+
             {users.data?.map((user) => (
               <TableRow key={user.id}>
-                <TableCell>
-                  <div className="hidden text-sm text-muted-foreground md:inline">
-                    {user.id}
-                  </div>
+                <TableCell className="hidden md:inline">
+                  <div className="text-sm text-muted-foreground">{user.id}</div>
                 </TableCell>
-                <TableCell className="hidden sm:table-cell">
-                  {user.email}
-                </TableCell>
+                <TableCell>{user.email}</TableCell>
                 <TableCell className="hidden sm:table-cell">
                   {user.username}
                 </TableCell>
