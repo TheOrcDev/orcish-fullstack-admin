@@ -32,24 +32,21 @@ export default function Users() {
           <TableBody>
             {users.isPending &&
               Array.from({ length: 5 }).map((_, index) => (
-                <TableRow key={index}>
+                <TableRow key={index} className="animate-pulse">
                   <TableCell width={"40%"}>
-                    <div className="text-sm text-muted-foreground">
-                      <div className="w-full p-5 rounded-xl bg-gray-400/30"></div>
-                    </div>
+                    <div className="p-5 bg-gray-400/30 rounded-xl"></div>
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    <div className="w-full p-5 rounded-xl bg-gray-400/30"></div>
+                  <TableCell>
+                    <div className="p-5 bg-gray-400/30 rounded-xl"></div>
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    <div className="w-full p-5 rounded-xl bg-gray-400/30"></div>
+                  <TableCell>
+                    <div className="p-5 bg-gray-400/30 rounded-xl"></div>
                   </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    <div className="w-full p-5 rounded-xl bg-gray-400/30"></div>
+                  <TableCell>
+                    <div className="p-5 bg-gray-400/30 rounded-xl"></div>
                   </TableCell>
                 </TableRow>
               ))}
-
             {users.data?.map((user) => (
               <TableRow key={user.id}>
                 <TableCell className="hidden md:inline">
