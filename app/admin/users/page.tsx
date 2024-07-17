@@ -1,4 +1,5 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -9,10 +10,30 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { trpc } from "@/server/client";
 
+const DEFAULT_PAGE = 1;
+const DEFAULT_TOTAL_ITEMS = 10;
+
 export default function Users() {
-  const users = trpc.users.get.useQuery();
+  const searchParams = useSearchParams();
+
+  const page = +(searchParams.get("page") ?? DEFAULT_PAGE);
+  const totalItems = +(searchParams.get("totalItems") ?? DEFAULT_TOTAL_ITEMS);
+
+  const users = trpc.users.get.useQuery({
+    page: page < 1 ? DEFAULT_PAGE : page,
+    totalItems: totalItems < 1 ? DEFAULT_TOTAL_ITEMS : totalItems,
+  });
 
   return (
     <Card className="m-10">
@@ -47,7 +68,7 @@ export default function Users() {
                   </TableCell>
                 </TableRow>
               ))}
-            {users.data?.map((user) => (
+            {users.data?.items.map((user) => (
               <TableRow key={user.id}>
                 <TableCell className="hidden md:inline">
                   <div className="text-sm text-muted-foreground">{user.id}</div>
@@ -63,6 +84,46 @@ export default function Users() {
             ))}
           </TableBody>
         </Table>
+        <Pagination>
+          <PaginationContent>
+            {page > 1 && (
+              <PaginationItem>
+                <PaginationPrevious
+                  href={`/admin/users?page=${
+                    page - 1
+                  }&totalItems=${totalItems}`}
+                />
+              </PaginationItem>
+            )}
+
+            {Array.from({ length: users.data?.totalPages ?? 1 }).map(
+              (_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    href={`/admin/users?page=${
+                      index + 1
+                    }&totalItems=${totalItems}`}
+                  >
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              )
+            )}
+
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            {users.data?.totalPages !== page && (
+              <PaginationItem>
+                <PaginationNext
+                  href={`/admin/users?page=${
+                    page + 1
+                  }&totalItems=${totalItems}`}
+                />
+              </PaginationItem>
+            )}
+          </PaginationContent>
+        </Pagination>
       </CardContent>
     </Card>
   );
