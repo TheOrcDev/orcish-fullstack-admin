@@ -23,11 +23,13 @@ Rename `.env.example` to `.env` and fill in your environment variables:
    cp .env.example .env
    ```
 
-   Open the `.env` file and replace the following with your own keys:
+   Open the `.env` file and replace the following with your own config:
 
    ```bash
    NEON_DATABASE_URL=
    NEXT_PUBLIC_APP_URL=
    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. 
+
+Admin are is on this url [http://localhost:3000/admin](http://localhost:3000/admin)
