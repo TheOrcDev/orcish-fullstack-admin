@@ -8,5 +8,11 @@ pnpm lint ||
           Run pnpm lint, make changes, and try the conquest again.`;
     false;
 )
+pnpm test ||
+(
+    echo '🔥🧨 Oh no, the battle plans have failed! Some tests did not pass. 🧨🔥
+          Fix the issues and prepare for another attack!';
+    false;
+)
 
 echo '🎉 No problems found: initiating orcish conquest now.... ✨🚀🏹🛡️'

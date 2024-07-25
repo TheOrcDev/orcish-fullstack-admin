@@ -1,25 +1,24 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-
 import UsersTable from "./users-table";
 
 const mockUsers = [
   {
     id: "1",
-    email: "user1@example.com",
-    username: "user1",
+    email: "warrior@orcdev.com",
+    username: "Warrior",
     createdAt: "2023-01-01",
   },
   {
     id: "2",
-    email: "user2@example.com",
-    username: "user2",
+    email: "wizard@orcdev.com",
+    username: "Wizard",
     createdAt: "2023-01-02",
   },
 ];
 
-describe("Users Page", () => {
-  it("renders Users page", () => {
+describe("UsersTable", () => {
+  it("renders", () => {
     render(
       <UsersTable
         users={mockUsers}
@@ -31,7 +30,7 @@ describe("Users Page", () => {
     );
   });
 
-  it("has right title", () => {
+  it("renders a right heading", () => {
     render(
       <UsersTable
         users={mockUsers}
@@ -42,13 +41,13 @@ describe("Users Page", () => {
       />
     );
 
-    const cardTitle = screen.getByRole("heading", { level: 3 });
+    const heading = screen.getByRole("heading", { level: 3 });
 
-    expect(cardTitle).toBeInTheDocument();
-    expect(cardTitle).toHaveTextContent("Users");
+    expect(heading).toBeInTheDocument();
+    expect(heading).toHaveTextContent("Users");
   });
 
-  it("renders table headers", () => {
+  it("renders table headings", () => {
     render(
       <UsersTable
         users={mockUsers}
@@ -75,18 +74,19 @@ describe("Users Page", () => {
         totalItems={10}
       />
     );
-    expect(screen.getByText("user1@example.com")).toBeInTheDocument();
-    expect(screen.getByText("user2@example.com")).toBeInTheDocument();
+
+    expect(screen.getByText("warrior@orcdev.com")).toBeInTheDocument();
+    expect(screen.getByText("wizard@orcdev.com")).toBeInTheDocument();
   });
 
-  test("renders pagination controls correctly", () => {
+  it("renders pagination correctly", () => {
     render(
       <UsersTable
         users={mockUsers}
         isLoading={false}
         totalPages={3}
         currentPage={2}
-        totalItems={6}
+        totalItems={2}
       />
     );
 
@@ -99,10 +99,10 @@ describe("Users Page", () => {
     expect(screen.getByRole("link", { name: /next/i })).toBeInTheDocument();
   });
 
-  it("renders loading state", () => {
+  it("renders loading", () => {
     render(
       <UsersTable
-        users={[]}
+        users={mockUsers}
         isLoading={true}
         totalPages={2}
         currentPage={1}
