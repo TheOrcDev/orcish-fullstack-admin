@@ -39,6 +39,7 @@ const readComponents = (relativePath) => {
 };
 
 const sharedUI = readComponents("ui");
+const features = readComponents("features");
 const sharedLibs = readFolders("shared/lib").map((f) => `${f}-lib`);
 
 const workflows = readFolders(".github/workflows", "").map(
@@ -85,6 +86,10 @@ module.exports = {
 
     "---",
     "pages",
+
+    "---",
+    "features",
+    ...features,
 
     "---",
     "shared",
