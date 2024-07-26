@@ -32,4 +32,10 @@ Rename `.env.example` to `.env` and fill in your environment variables:
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. 
 
-Admin are is on this url [http://localhost:3000/admin](http://localhost:3000/admin)
+To run the tests run:
+
+   ```bash
+   pnpm test
+   ```
+
+Admin is on this url [http://localhost:3000/admin](http://localhost:3000/admin)
