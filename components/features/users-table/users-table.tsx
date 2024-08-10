@@ -47,10 +47,10 @@ const UsersTable = ({
         <CardTitle>Users</CardTitle>
       </CardHeader>
       <CardContent>
-        <Table>
+        <Table className="overflow-hidden">
           <TableHeader>
             <TableRow>
-              <TableHead className="hidden sm:table-cell">ID</TableHead>
+              <TableHead className="hidden md:table-cell">ID</TableHead>
               <TableHead>Email</TableHead>
               <TableHead className="hidden sm:table-cell">Username</TableHead>
               <TableHead className="hidden md:table-cell">Date</TableHead>

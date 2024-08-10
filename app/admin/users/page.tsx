@@ -8,7 +8,7 @@ import { trpc } from "@/server/client";
 import { UsersTable } from "@/components/features";
 
 const DEFAULT_PAGE = 1;
-const DEFAULT_TOTAL_ITEMS = 10;
+const DEFAULT_TOTAL_ITEMS = 7;
 
 export default function Users() {
   const searchParams = useSearchParams();
