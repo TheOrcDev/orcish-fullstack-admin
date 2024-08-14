@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,7 +44,7 @@ const UsersTable = ({
   totalItems,
 }: UsersTableProps) => {
   return (
-    <Card className="m-10">
+    <Card>
       <CardHeader className="px-7">
         <CardTitle>Users</CardTitle>
       </CardHeader>

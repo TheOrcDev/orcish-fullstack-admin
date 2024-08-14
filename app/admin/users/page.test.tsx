@@ -8,6 +8,12 @@ jest.mock("next/navigation", () => {
     useSearchParams: () => ({
       get: () => {},
     }),
+    useRouter: () => ({
+      get: () => {},
+    }),
+    usePathname: () => ({
+      get: () => {},
+    }),
   };
 });
 
