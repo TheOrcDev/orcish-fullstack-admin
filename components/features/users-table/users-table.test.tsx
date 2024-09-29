@@ -25,7 +25,7 @@ describe("UsersTable", () => {
         isLoading={false}
         totalPages={2}
         currentPage={1}
-        totalItems={10}
+        onPageChange={() => {}}
       />
     );
   });
@@ -37,7 +37,7 @@ describe("UsersTable", () => {
         isLoading={false}
         totalPages={2}
         currentPage={1}
-        totalItems={10}
+        onPageChange={() => {}}
       />
     );
 
@@ -54,7 +54,7 @@ describe("UsersTable", () => {
         isLoading={false}
         totalPages={2}
         currentPage={1}
-        totalItems={10}
+        onPageChange={() => {}}
       />
     );
 
@@ -86,17 +86,13 @@ describe("UsersTable", () => {
         isLoading={false}
         totalPages={3}
         currentPage={2}
-        totalItems={2}
+        onPageChange={() => {}}
       />
     );
 
-    expect(screen.getByRole("link", { name: /previous/i })).toBeInTheDocument();
-
-    expect(screen.getByRole("link", { name: "1" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "2" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "3" })).toBeInTheDocument();
-
-    expect(screen.getByRole("link", { name: /next/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "1" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "2" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "3" })).toBeInTheDocument();
   });
 
   it("renders loading", () => {
@@ -106,7 +102,7 @@ describe("UsersTable", () => {
         isLoading={true}
         totalPages={2}
         currentPage={1}
-        totalItems={10}
+        onPageChange={() => {}}
       />
     );
 

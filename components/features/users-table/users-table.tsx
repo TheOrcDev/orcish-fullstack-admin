@@ -16,10 +16,9 @@ import {
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface User {
   id: string;
@@ -33,7 +32,7 @@ interface UsersTableProps {
   isLoading: boolean;
   totalPages: number;
   currentPage: number;
-  totalItems: number;
+  onPageChange: (page: number) => void;
 }
 
 const UsersTable = ({
@@ -41,7 +40,7 @@ const UsersTable = ({
   isLoading,
   totalPages,
   currentPage,
-  totalItems,
+  onPageChange,
 }: UsersTableProps) => {
   return (
     <Card>
@@ -99,22 +98,16 @@ const UsersTable = ({
           <PaginationContent>
             {currentPage > 1 && (
               <PaginationItem>
-                <PaginationPrevious
-                  href={`/admin/users?page=${
-                    currentPage - 1
-                  }&totalItems=${totalItems}`}
-                />
+                <Button onClick={() => onPageChange(currentPage - 1)}>
+                  <ChevronLeft />
+                </Button>
               </PaginationItem>
             )}
             {Array.from({ length: totalPages }).map((_, index) => (
               <PaginationItem key={index}>
-                <PaginationLink
-                  href={`/admin/users?page=${
-                    index + 1
-                  }&totalItems=${totalItems}`}
-                >
+                <Button onClick={() => onPageChange(index + 1)}>
                   {index + 1}
-                </PaginationLink>
+                </Button>
               </PaginationItem>
             ))}
             <PaginationItem>
@@ -122,11 +115,9 @@ const UsersTable = ({
             </PaginationItem>
             {totalPages !== currentPage && (
               <PaginationItem>
-                <PaginationNext
-                  href={`/admin/users?page=${
-                    currentPage + 1
-                  }&totalItems=${totalItems}`}
-                />
+                <Button onClick={() => onPageChange(currentPage + 1)}>
+                  <ChevronRight />
+                </Button>
               </PaginationItem>
             )}
           </PaginationContent>

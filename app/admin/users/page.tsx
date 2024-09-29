@@ -1,26 +1,36 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { parseAsInteger, useQueryState } from "nuqs";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { trpc } from "@/server/client";
 
 import { UsersTable } from "@/components/features";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_TOTAL_ITEMS = 7;
 
 export default function Users() {
-  const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [currentSearch, setCurrentSearch] = useState<string>("");
+  const [currentSearch, setCurrentSearch] = useQueryState("search", {
+    defaultValue: "",
+  });
+  const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));
+  const [totalItems, setTotalItems] = useQueryState(
+    "totalItems",
+    parseAsInteger.withDefault(0)
+  );
 
-  const page = +(searchParams.get("page") ?? DEFAULT_PAGE);
-  const totalItems = +(searchParams.get("totalItems") ?? DEFAULT_TOTAL_ITEMS);
   const search = searchParams.get("search");
 
   const { data, isPending } = trpc.users.get.useQuery({
@@ -29,35 +39,35 @@ export default function Users() {
     search,
   });
 
-  const handleSearch = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("search", currentSearch);
-
-    return params.toString();
-  };
-
   return (
     <div className="m-10 flex flex-col gap-5">
-      <div className="flex gap-3 w-max">
-        <Input
-          value={currentSearch}
-          placeholder="Search"
-          onChange={(e) => setCurrentSearch(e.target.value)}
-        />
-        <Button
-          onClick={() => {
-            router.push(pathname + "?" + handleSearch());
-          }}
-        >
-          Search
-        </Button>
+      <div className="flex justify-between gap-3 w-full">
+        <div>
+          <Input
+            value={currentSearch}
+            placeholder="Search"
+            onChange={(e) => setCurrentSearch(e.target.value)}
+          />
+        </div>
+
+        <Select onValueChange={(value) => setTotalItems(parseInt(value))}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Total Items" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="5">5</SelectItem>
+            <SelectItem value="10">10</SelectItem>
+            <SelectItem value="20">20</SelectItem>
+            <SelectItem value="50">50</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <UsersTable
         users={data?.items ?? []}
         isLoading={isPending}
         totalPages={data?.totalPages ?? 1}
         currentPage={page}
-        totalItems={totalItems}
+        onPageChange={(page) => setPage(page)}
       />
     </div>
   );
