@@ -33,7 +33,7 @@ export default function Users() {
 
   const search = searchParams.get("search");
 
-  const { data, isPending } = trpc.users.get.useQuery({
+  const { data, isLoading } = trpc.users.get.useQuery({
     page: page < 1 ? DEFAULT_PAGE : page,
     totalItems: totalItems < 1 ? DEFAULT_TOTAL_ITEMS : totalItems,
     search,
@@ -64,7 +64,7 @@ export default function Users() {
       </div>
       <UsersTable
         users={data?.items ?? []}
-        isLoading={isPending}
+        isLoading={isLoading}
         totalPages={data?.totalPages ?? 1}
         currentPage={page}
         onPageChange={(page) => setPage(page)}
