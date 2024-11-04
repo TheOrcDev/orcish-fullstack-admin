@@ -71,7 +71,7 @@ describe("UsersTable", () => {
         isLoading={false}
         totalPages={2}
         currentPage={1}
-        totalItems={10}
+        onPageChange={() => {}}
       />
     );
 
