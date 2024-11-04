@@ -15,7 +15,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { trpc } from "@/server/client";
+import { createUser } from "@/server/users";
+import { useState } from "react";
+import { Loader } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -24,17 +26,22 @@ const formSchema = z.object({
 });
 
 export default function SignupForm() {
-  const createUser = trpc.users.create.useMutation();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      email: "",
+      password: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    createUser.mutate(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    await createUser(values);
+    form.reset();
+    setIsLoading(false);
   }
 
   return (
@@ -89,8 +96,12 @@ export default function SignupForm() {
           <Button type="submit" className="w-full">
             Create an account
           </Button>
-          <Button variant="outline" className="w-full">
-            Sign up with GitHub
+          <Button variant="outline" className="w-full" disabled={isLoading}>
+            {isLoading ? (
+              <Loader className="size-4 animate-spin" />
+            ) : (
+              "Sign up with GitHub"
+            )}
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">

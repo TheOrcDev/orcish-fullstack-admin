@@ -4,7 +4,6 @@ import "./globals.css";
 import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { TRPCProvider } from "@/components/ui/trpc-provider";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
@@ -31,16 +30,14 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <TRPCProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NuqsAdapter>{children}</NuqsAdapter>
-          </ThemeProvider>
-        </TRPCProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NuqsAdapter>{children}</NuqsAdapter>
+        </ThemeProvider>
       </body>
     </html>
   );

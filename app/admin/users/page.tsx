@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { parseAsInteger, useQueryState } from "nuqs";
 
 import { useSearchParams } from "next/navigation";
-import { trpc } from "@/server/client";
 
+import { getUsers, GetUsersResponse } from "@/server/users";
 import { UsersTable } from "@/components/features";
 import { Input } from "@/components/ui/input";
 import {
@@ -20,6 +20,11 @@ const DEFAULT_PAGE = 1;
 const DEFAULT_TOTAL_ITEMS = 7;
 
 export default function Users() {
+  const [users, setUsers] = useState<GetUsersResponse>({
+    items: [],
+    totalPages: 1,
+  });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const searchParams = useSearchParams();
 
   const [currentSearch, setCurrentSearch] = useQueryState("search", {
@@ -33,11 +38,21 @@ export default function Users() {
 
   const search = searchParams.get("search");
 
-  const { data, isLoading } = trpc.users.get.useQuery({
-    page: page < 1 ? DEFAULT_PAGE : page,
-    totalItems: totalItems < 1 ? DEFAULT_TOTAL_ITEMS : totalItems,
-    search,
-  });
+  // TODO: Remove this useEffect, use new hooks
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setIsLoading(true);
+      const users = await getUsers({
+        page: page < 1 ? DEFAULT_PAGE : page,
+        totalItems: totalItems < 1 ? DEFAULT_TOTAL_ITEMS : totalItems,
+        search,
+      });
+      setUsers(users);
+      setIsLoading(false);
+    };
+
+    fetchUsers();
+  }, [search, page, totalItems]);
 
   return (
     <div className="m-10 flex flex-col gap-5">
@@ -63,9 +78,9 @@ export default function Users() {
         </Select>
       </div>
       <UsersTable
-        users={data?.items ?? []}
+        users={users.items}
         isLoading={isLoading}
-        totalPages={data?.totalPages ?? 1}
+        totalPages={users.totalPages}
         currentPage={page}
         onPageChange={(page) => setPage(page)}
       />

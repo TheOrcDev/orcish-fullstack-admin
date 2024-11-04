@@ -1,7 +1,7 @@
 ![orcish-fullstack-admin](https://github.com/TheOrcDev/orcish-fullstack-admin/assets/7549148/33e3a311-c595-4b2b-8a74-eee3ac8331e0)
 
 ## Overview
-Welcome to the Next.js Admin Panel Fullstack Project! This application is built using Next.js, Shadcn, tRPC, Drizzle, and Neon. Designed as an admin interface, it provides a robust and reusable foundation for your new projects. This guide will assist you in setting up and running the development server for this versatile application.
+Welcome to the Next.js Admin Panel Fullstack Project! This application is built using Next.js, Shadcn, Server Actions, Drizzle, and Neon. Designed as an admin interface, it provides a robust and reusable foundation for your new projects. This guide will assist you in setting up and running the development server for this versatile application.
 
 ## Getting Started
 
