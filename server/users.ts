@@ -63,12 +63,16 @@ interface CreateUserInput {
 }
 
 export async function createUser(input: CreateUserInput) {
-  const salt = genSaltSync(10);
-  const hash = hashSync(input.password, salt);
+  try {
+    const salt = genSaltSync(10);
+    const hash = hashSync(input.password, salt);
 
-  await db.insert(users).values({
-    username: input.username,
-    email: input.email,
-    password: hash,
-  });
+    await db.insert(users).values({
+      username: input.username,
+      email: input.email,
+      password: hash,
+    });
+  } catch (e) {
+    throw e;
+  }
 }
