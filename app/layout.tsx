@@ -6,6 +6,7 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { ScreenSize } from "@/components/ui/screen-size";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NuqsAdapter>{children}</NuqsAdapter>
+          {process.env.ENVIRONMENT === "development" && <ScreenSize />}
         </ThemeProvider>
       </body>
     </html>
