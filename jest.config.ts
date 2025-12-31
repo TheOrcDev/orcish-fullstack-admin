@@ -15,4 +15,5 @@ const config: Config = {
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-export default createJestConfig(config)
+// @ts-ignore -- Type 'ConfigGlobals' is used implicitly in the return type
+export default createJestConfig(config) as Promise<Config>
